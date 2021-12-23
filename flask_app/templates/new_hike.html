@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>The World is Your Oyster</title>
+</head>
+<body>
+    <div class="container2">
+        <!-- Top navigation bar -->
+        <div class="nav-bar">
+            <h1>The World is Your Oyster</h1>
+            <div class="nav-links">
+                <div class="user_name_header">
+                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <a href="/profile/edit"><img src="../static/images/user-circle.png" alt="user icon"></a>
+                </div>
+                <a href="/dashboard">Home</a> | 
+                <a href="/new/hike">Create</a> | 
+                <a href="/profile">Profile</a> | 
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <!-- Welcome title -->
+        <div class="welcome-header">
+            <img src="../static/images/user-circle.png" alt="user icon">
+            <h3>Welcome, {{ user.first_name }} {{ user.last_name }}!</h3>
+        </div>
+        <!-- "Create a Hike" section -->
+        <div class="hike-form-outer-container">
+            <h3>Create a Hike</h3>
+                <!-- Error messages, if any -->
+                {% with messages = get_flashed_messages(category_filter=["hiking"]) %}
+                    {% if messages %}
+                        <div class="error-message">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <!-- Start of form -->
+                <div class="hike-form-container">
+                    <form action="/create/hike" method="POST">
+                        <!-- User id value is hidden so that we can associate the new hike post with the logged-in user -->
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <!-- "Name of Hike" field -->
+                        <div>
+                            <label for="name">Name of Hike:</label><br>
+                            <input type="text" name="name">
+                        </div>
+                        <!-- "Description" field -->
+                        <div>
+                            <label for="description">Description:</label><br>
+                            <textarea name="description" cols="25" rows="8"></textarea>
+                        </div>
+                        <div>
+                            <!-- "City" field -->
+                            <div>
+                                <label for="city">City:</label><br>
+                                <input type="text" name="city">
+                            </div>
+                            <!-- "State" field -->
+                            <div>
+                                <label for="state">State:</label><br>
+                                <input type="text" name="state">
+                            </div>
+                            <!-- "Difficulty" field -->
+                            <div>
+                                <label for="difficulty">Difficulty:</label><br>
+                                <select name="difficulty">
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Advanced">Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- "Update" button -->
+                        <input type="submit" value="Create" class="btn create-update-btn">
+                    </form>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

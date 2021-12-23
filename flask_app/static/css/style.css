@@ -1,0 +1,335 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+p {
+    font-size: 14px;
+}
+
+label {
+    font-size: 15px;
+}
+
+#blue-heading {
+    color: #0578F9;
+    margin-bottom: 15px;
+}
+
+#green-heading {
+    color: #4E9B45;
+    margin-bottom: 15px;
+}
+
+.index-form-container {
+    color: white;
+    background-color: #34393E;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 30px 15px 15px 15px;
+}
+
+#blue-header {
+    background-color: #9EC4F8;
+    border: 3px solid black;
+    border-bottom: none;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.index-form-container div input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 5px 0px 15px 0px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.index-form-container a {
+    color: white;
+    font-size: 0.7rem;
+    text-decoration: underline;
+}
+
+.btn {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+    box-shadow: 3px 3px black;
+    cursor: pointer;
+}
+
+#login-btn, #register-btn {
+    color: white;
+    font-size: 0.9em;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-btn {
+    background-color: #4E9B45;
+}
+
+#register-btn {
+    background-color: #0578F9;
+}
+
+#search-btn {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#login-btn {
+    background-color: #4E9B45;
+}
+
+.favorites-btn {
+    background-color: rgb(159, 44, 82);
+}
+
+.create-update-btn {
+    background-color: seagreen;
+    margin: 30px 0px 10px 0px;
+}
+
+.comment-btn {
+    background-color: #F2CA4E;
+    margin-bottom: 30px;
+}
+
+.error-message {
+    color: #7E2D33;
+    background-color: #F7D6D9;
+    margin: 15px 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.error-message p {
+    margin: 15px;
+}
+
+.container2 {
+    width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container2 h3 {
+    text-align: left;
+}
+
+.nav-bar {
+    background-color: #93C47D;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.nav-bar h1 {
+    margin: 10px 0px;
+}
+
+.nav-links {
+    text-align: right;
+}
+
+.user_name_header {
+    display: flex;
+    justify-content: right;
+    text-align: right;
+}
+
+.user_name_header h3 {
+    margin-right: 20px;
+}
+
+.welcome-header {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px 30px 20px;
+}
+
+.welcome-header img {
+    margin-right: 15px;
+}
+
+.hike-list-container {
+    margin: 0px 150px 0px 20px;
+    text-align: left;
+}
+
+.outer-box {
+    height: 450px;
+    border: 3px solid black;
+    padding: 0px 15px 15px 15px;
+    overflow: auto;
+}
+
+.outer-box p, .outer-box h4 {
+    margin-top: 10px;
+}
+
+#filter_results {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 20px 20px 20px;
+}
+
+.hike-results-container {
+    display: flex;
+    border: 2px solid black;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 10px 20px 10px;
+    padding: 15px 10px;
+}
+
+.hike-results-container a {
+    font-size: 15px;
+}
+
+.hike-results-container p {
+    color: #0578F9;
+    margin-top: 5px;
+}
+
+.hike-form-outer-container {
+    width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: #9EC4F8;
+    padding: 20px;
+}
+
+.hike-form-container {
+    text-align: left;
+}
+
+.hike-form-container div {
+    margin-top: 20px;
+}
+
+.hike-form-container div input, textarea, .hike-form-container select {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    margin: 5px 0px 15px 0px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#hike-details-container {
+    text-align: left;
+    border: 2px solid black;
+    margin: 0px 20px;
+    padding: 10px;
+}
+
+#hike-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#hike-header span {
+    display: flex;
+    align-content: center;
+    font-size: 14px;
+}
+
+#hike-header h5 {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.like-dislike-btn {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.like-icon {
+    font-size: 1.1rem;
+    color: green;
+}
+
+.dislike-icon {
+    font-size: 1.1rem;
+    color: red;
+}
+
+#hike-more-details p{
+    margin-bottom: 20px;
+}
+
+#like-dislike-container {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#like-dislike-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.comment-container {
+    width: 600px;
+    border: 2px solid black;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.comment-container p {
+    color: navy;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-header p {
+    color: grey;
+    font-size: 12px;
+}
+
+.about_user {
+    text-align: left;
+    margin: 0px 0px 20px 20px;
+}
+
+.fave-margins {
+    margin-top: 20px;
+}
+
+
+

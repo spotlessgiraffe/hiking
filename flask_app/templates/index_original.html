@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>The World is Your Oyster</title>
+</head>
+<body>
+    <div id="container1">
+        <!-- Register form -->
+        <div class="index-form-container">
+            <h1 id="blue-heading">Register</h1>
+            <form action="/register" method="POST">
+                <!-- Error messages, if any -->
+                {% with messages = get_flashed_messages(category_filter=["registration"]) %}    {# declare a variable called messages #}
+                    {% if messages %}                           {# check if there are any messages #}
+                        <div class="error-message">
+                            {% for message in messages %}       {# loop through the messages #}
+                                <p>{{ message }}</p>            {# display each applicable message #}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <!-- "First Name" field -->
+                <div>
+                    <label for="first_name">First Name:</label><br>
+                    <input type="text" name="first_name">
+                </div>
+                <!-- "Last Name" field -->
+                <div>
+                    <label for="last_name">Last Name:</label><br>
+                    <input type="text" name="last_name">
+                </div>
+                <!-- "Email" field -->
+                <div>
+                    <label for="email">Email:</label><br>
+                    <input type="text" name="email">
+                </div>
+                <!-- "Password" field -->
+                <div>
+                    <label for="password">Password:</label><br>
+                    <input type="password" name="password">
+                </div>
+                <!-- "Confirm Password" field -->
+                <div>
+                    <label for="confirm_password">Confirm Password:</label><br>
+                    <input type="password" name="confirm_password">
+                </div>
+                <!-- "Register" button -->
+                <input type="submit" value="Register" id="register-btn">
+            </form>
+        </div>
+
+        <!-- Login form -->
+        <div class="index-form-container">
+            <h1 id="green-heading">Login</h1>
+            <form action="/login" method="POST">
+                <!-- Error messages, if any -->
+                {% with messages = get_flashed_messages(category_filter=["login"]) %}    {# declare a variable called messages #}
+                    {% if messages %}                           {# check if there are any messages #}
+                        <div class="error-message">
+                            {% for message in messages %}           {# loop through messages #}
+                                <p>{{ message }}</p>                {# print message #}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <!-- "Email" field -->
+                <div>
+                    <label for="email">Email:</label><br>
+                    <input type="text" name="email">
+                </div>
+                <!-- "Password" field -->
+                <div>
+                    <label for="password">Password:</label><br>
+                    <input type="password" name="password">
+                </div>
+                <input type="submit" value="Login" id="login-btn">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

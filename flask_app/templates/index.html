@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>The World is Your Oyster</title>
+</head>
+<body>
+    <div>
+        <!-- Navigation bar -->
+        <div class="nav-bar">
+            <h1>The World is Your Oyster</h1>
+            <div class="nav-links">
+                <a href="/dashboard">Home</a> | 
+                <a href="/register">Register</a>
+            </div>
+        </div>
+        <!-- Login form -->
+        <div class="index-form-container">
+            <!-- Error messages, if any -->
+            {% with messages = get_flashed_messages(category_filter=["login"]) %}    {# declare a variable called messages #}
+                {% if messages %}                                                       {# check if there are any messages #}
+                    <div class="error-message">
+                        {% for message in messages %}                                   {# loop through messages #}
+                            <p>{{ message }}</p>                                        {# display each message #}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <h1 id="green-heading">Login</h1>
+            <form action="/login" method="POST">
+                <!-- Email address field -->
+                <div>
+                    <label for="email">Email address:</label><br>
+                    <input type="text" name="email">
+                </div>
+                <!-- Password field -->
+                <div>
+                    <label for="password">Password:</label><br>
+                    <input type="password" name="password">
+                </div>
+                <!-- "Login" button and signup link -->
+                <div>
+                    <input type="submit" value="Login" id="login-btn">
+                    <p><a href="/register">Don't have an account? Sign up here!</a></p>
+                </div>
+            </form>
+        </div>
+        

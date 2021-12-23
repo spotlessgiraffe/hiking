@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/brands.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>The World is Your Oyster</title>
+</head>
+<body>
+    <div class="container2">
+        <!-- Top navigation bar -->
+        <div class="nav-bar">
+            <h1>The World is Your Oyster</h1>
+            <div class="nav-links">
+                <div class="user_name_header">
+                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <a href="/profile/edit"><img src="{{ url_for('static', filename='images/user-circle.png') }}" alt="user icon"></a>
+                </div>
+                <a href="/dashboard">Home</a> | 
+                <a href="/new/hike">Create</a> | 
+                <a href="/profile">Profile</a> | 
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <!-- Welcome title -->
+        <div class="welcome-header">
+            <img src="{{ url_for('static', filename='images/user-circle.png') }}" alt="user icon">
+            <h2>Welcome, {{ user.first_name }} {{ user.last_name }}!</h2>
+        </div>
+
+        <!-- Displays details of selected hike -->
+        <div id="hike-details-container">
+            <!-- Name of hike and difficulty level -->
+            <div id="hike-header">
+                <h2>{{ hike.name }}</h2>
+                <span>
+                    <h5>Difficulty: </h5>
+                    <p>{{ hike.difficulty }}</p>
+                </span>
+            </div>
+            <i class="far fa-image fa-10x"></i>
+            <!-- Container for details of the trip -->
+            <div id="hike-more-details">
+                <p><b>Location: </b>{{ hike.city }}, {{ hike.state }}</p> 
+                <p>
+                    <b>Description:</b>
+                    <br>{{ hike.description }}</br>
+                </p>
+                <!-- Allow user to thumbs-up or thumbs-down the post -->
+                <div id="like-dislike-container">
+                    <span><b>Recommend this hike?</b></span>
+                    <div>
+                        <button class="like-dislike-btn" onclick="display_likes()"><i class="fas fa-thumbs-up like-icon"></i></button>
+                        <span id="likes_count">(0)</span>
+                    </div>
+                    <div>
+                        <button class="like-dislike-btn" onclick="display_dislikes()"><i class="fas fa-thumbs-down dislike-icon"></i></button>
+                        <span id="dislikes_count">(0)</span>
+                    </div>
+                    <!-- Option to add hike to favorites -->
+                    <div>
+                        {% if current_user.with_faves|length == 0 %}
+                            <button class="btn favorites-btn"><a href="/add_favorites/{{ hike.id }}">Add to favorites</a></button>
+                        {% else %}
+                            {% for fave_hike in current_user.with_faves %}      {# user_faves is a list of Hike objects #}
+                                {% if fave_hike.id == hike.id %}
+                                    <span>This hike has already been added to your favorites</span>
+                                {% else %}
+                                    <button class="btn favorites-btn"><a href="/add_favorites/{{ hike.id }}">Add to favorites</a></button>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Container for comments -->
+            <div>
+                <h4>Comments:</h4>
+                <!-- Add comments -->
+                <!-- Error messages, if any -->
+                {% with messages = get_flashed_messages(category_filter=["comment"]) %}
+                    {% if messages %}
+                        <div class="error-message">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <div>
+                    <form action="/create/comment/{{ hike.id }}" method="POST">
+                        <input type="hidden" name="hike_id" value="{{ hike.id }}">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <textarea name="message" cols="50" rows="3"></textarea>
+                        <p><input type="submit" value="Add Comment" class="btn comment-btn"></p>
+                    </form>
+                </div>
+                <!-- Display existing comments -->
+                {% for comment in current_hike.with_comments %}
+                    <!-- Container for each existing comment -->
+                    <div class="comment-container">
+                    {% for user in all_users %}
+                        {% if comment.user_id == user.id %}
+                            <!-- Header with user info and created date, then content of comment -->
+                            <div class="comment-header">
+                                <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                                <p>{{ comment.created_at.strftime("%m/%d/%y %I:%M %p") }}</p>
+                            </div>
+                            <p>{{ comment.message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

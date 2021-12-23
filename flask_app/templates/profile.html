@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css/brands.css') }}">
+    <title>The World is Your Oyster</title>
+</head>
+<body>
+    <div class="container2">
+        <!-- Top navigation bar -->
+        <div class="nav-bar">
+            <h1>The World is Your Oyster</h1>
+            <div class="nav-links">
+                <div class="user_name_header">
+                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <a href="/profile/edit"><img src="{{ url_for('static', filename='images/user-circle.png') }}" alt="user icon"></a>
+                </div>
+                <a href="/dashboard">Home</a> | 
+                <a href="/new/hike">Create</a> | 
+                <a href="/profile">Profile</a> | 
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <!-- Welcome title -->
+        <div class="welcome-header">
+            <img src="{{ url_for('static', filename='images/user-circle.png') }}" alt="user icon">
+            <h3>{{ user.first_name }} {{ user.last_name }}'s Profile</h3>
+        </div>
+
+        <!-- About Me section -->
+        <div class="about_user">
+            <h4>About Me</h4>
+            <p>{{ user.about_me }}</p>
+        </div>
+        <!-- Experience Level section -->
+        <div class="about_user">
+            <h4>Experience Level</h4>
+            <p>{{ user.experience }}</p>
+        </div>
+        <!-- Favorite Hikes section -->
+        <div class="hike-list-container">
+            <h4>Favorited Hikes</h4>
+            <div class="outer-box"> <!-- Outer box -->
+                {% for hike in fave_hikes_with_users %}
+                    <div class="hike-results-container fave-margins">
+                        <div>
+                            <h3>
+                                <i class="far fa-image"></i>
+                                {{ hike.name }}
+                            </h3>
+                            <p>Posted by:
+                                {% for user in hike.with_user %}
+                                    {{ user.first_name }} {{ user.last_name }}
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <!-- View/edit/delete links -->
+                        <div>
+                            <a href="/view/hike/{{ hike.id }}">View</a>
+                            {% if hike.user_id == user.id %}
+                                | <a href="/edit/hike/{{ hike.id }}">Edit</a> | 
+                                <a href="/delete/">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+            
+    </div>
+</body>
+</html>
